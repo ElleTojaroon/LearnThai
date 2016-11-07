@@ -1,0 +1,86 @@
+[
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": [
+      {
+        "picture": "cinema.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "bakery.png",
+        "isCorrect": true
+      }
+    ],
+    "audioWord": "left-of-cinema.mp3"
+  },
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": [
+      {
+        "picture": "cinema.png",
+        "isCorrect": true
+      },
+      {
+        "picture": "bakery.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "restaurant.png",
+        "isCorrect": true
+      }
+    ],
+    "audioWord": "next-to-bakery.mp3"
+  },
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": [
+      {
+        "picture": "cinema.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "bakery.png",
+        "isCorrect": true
+      },
+      {
+        "picture": "restaurant.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "tree.png",
+        "isCorrect": false
+      }
+    ],
+    "audioWord": "between-cinema-and-restaurant.mp3"
+  },
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": [
+      {
+        "picture": "bakery.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "restaurant.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "tree.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "tree.png",
+        "isCorrect": false
+      },
+      {
+        "picture": "cinema.png",
+        "isCorrect": true
+      },
+      {
+        "picture": "tree.png",
+        "isCorrect": false
+      }
+    ],
+    "audioWord": "among-trees.mp3"
+  }
+]

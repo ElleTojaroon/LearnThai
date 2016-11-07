@@ -1,0 +1,29 @@
+<div>
+	<md-content>
+	<md-list>
+		<md-list-item class="md-3-line" ng-repeat="user in users">
+			
+			
+			<img ng-src="{{ user.picURL }}" class="md-avatar" />
+	
+			
+			
+			
+			<div class="md-list-item-text">
+				<h3>{{ user.fname }} {{ user.lname }}</h3>
+				<p>{{ user.email }}</p>
+				
+				<!--button-->
+				<button class="md-button" ng-click="go(user)">See more</button>
+				
+			</div>
+			
+			<!--divider doesn't work-->
+			<md-divider ng-if="!$last"></md-divider>
+			
+
+		</md-list-item>
+		
+	</md-list>
+	</md-content>
+</div>
