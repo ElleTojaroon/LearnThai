@@ -1,11 +1,15 @@
 .lt-game-background {
   position: relative;
   width: 80%;
-  height: 30em;
+  height: 100%;
   margin: 2rem auto;
   padding-top: 3%;
   padding-bottom: 0rem;
   background-color: white;
+}
+
+div[ng-view].ng-scope {
+  height: 100% !important;
 }
 
 .lt-picture {

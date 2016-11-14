@@ -36,8 +36,11 @@ controllers.controller('learnThaiCtrl',
           questions = json;
           incQuestion();
           $timeout(function (){
-            $scope.checkAnswer();
             updateAudioSource();
+            // test
+            audio.addEventListener("ended", function(){
+              $scope.checkAnswer(); // before every check ans, check if the audio is finished
+            });
           },100);
         });
       };
@@ -101,12 +104,13 @@ controllers.controller('learnThaiCtrl',
       }
 
       $scope.checkAnswer = function (){
+        console.log("check")
         if($scope.timeoutId){
             $timeout.cancel($scope.timeoutId);
             $scope.timeoutId = null;
         }
         $scope.timeoutId = $timeout(function (){
-          $("[is-correct='true']").click(function() {
+          $("[is-correct='true']").one('click', function() {
             $scope.hasAnswered = true;
             if (! $(this).hasClass('hvr-push')) {
               $scope.score += 100;
@@ -117,7 +121,7 @@ controllers.controller('learnThaiCtrl',
                 $scope.$apply();
             }
           });
-          $("[is-correct='false']").click(function() {
+          $("[is-correct='false']").one('click', function() {
             if (!$scope.hasAnswered) {
               if (! $(this).hasClass('hvr-wobble-horizontal')) {
                 $scope.life -= 1;
@@ -139,8 +143,11 @@ controllers.controller('learnThaiCtrl',
       function nextQuestion_helper() {
         $scope.hasAnswered = false;
         incQuestion();
-        $scope.checkAnswer();
         updateAudioSource();
+        // test
+        audio.addEventListener("ended", function(){
+          $scope.checkAnswer(); // before every check ans, check if the audio is finished
+        });
       };
 
       function incQuestion() {
