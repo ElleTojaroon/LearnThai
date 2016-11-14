@@ -49,10 +49,10 @@ controllers.controller('learnThaiCtrl',
 
       $scope.aud_play = function () {
         var myAudio = document.getElementById("myAudio");
-          if (myAudio.paused) {
-            myAudio.play();
-            $scope.audioRepeats += 1;
-          }
+        if (myAudio.paused) {
+          myAudio.play();
+          $scope.audioRepeats += 1;
+        }
       };
 
       function updateAudioSource() {
