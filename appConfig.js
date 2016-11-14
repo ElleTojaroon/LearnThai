@@ -9,6 +9,10 @@ app.
           templateUrl: 'components/learnThai/learnThai.html',
           controller : 'learnThaiCtrl'
         }).
+        when('/learn-thai-map', {
+          templateUrl: 'components/learnThaiMap/learnThaiMap.html',
+          controller : 'learnThaiCtrl'
+        }).
         otherwise('/learn-thai');
     }
   ]);

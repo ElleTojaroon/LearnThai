@@ -50,8 +50,10 @@ div[ng-view].ng-scope {
 
 .lt-choices {
   margin: auto;
-  width: 20rem;
-  height: 15rem;
+  max-width: 20rem;
+  max-height: 15rem;
+  width: auto;
+  height: auto;
   padding: 3px;
   border: 2px solid transparent;
 }
