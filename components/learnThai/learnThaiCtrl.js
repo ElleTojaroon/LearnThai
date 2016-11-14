@@ -24,22 +24,24 @@ controllers.controller('learnThaiCtrl',
       var questionIdx = -1;
       var audio = document.getElementById('myAudio');
       var canvas = document.getElementById('analyser_render');
+      var level = 0;
+      var jsons = ["json/level1.json", "json/level2.json"];
+      var music_lst = ['../../music/level1/', '../../music/level2/'];
 
       /************************* functions ************************************/
       $timeout(function (){
+        initMp3Player();
         $scope.pageLoad();
       },0.5);
 
       $scope.pageLoad = function (){
-        initMp3Player();
-        getJSON("json/level1.json", function(json) {
+        getJSON(jsons[level], function(json) {
           questions = json;
           incQuestion();
           $timeout(function (){
             updateAudioSource();
-            // test
             audio.addEventListener("ended", function(){
-              $scope.checkAnswer(); // before every check ans, check if the audio is finished
+              $scope.checkAnswer();
             });
           },100);
         });
@@ -57,7 +59,7 @@ controllers.controller('learnThaiCtrl',
         var currAudioSource = document.getElementById('myAudioSource');
         audio.load(); //call this to just preload the audio without playing
         currAudioSource.src =
-          '../../music/level1/' + $scope.audio;
+          music_lst[level] + $scope.audio;
         // need to disconnect media element source from the previous audio
         // Re-route audio playback into the processing graph of the AudioContext
         source.connect(analyser);
@@ -104,7 +106,6 @@ controllers.controller('learnThaiCtrl',
       }
 
       $scope.checkAnswer = function (){
-        console.log("check")
         if($scope.timeoutId){
             $timeout.cancel($scope.timeoutId);
             $scope.timeoutId = null;
@@ -144,9 +145,8 @@ controllers.controller('learnThaiCtrl',
         $scope.hasAnswered = false;
         incQuestion();
         updateAudioSource();
-        // test
         audio.addEventListener("ended", function(){
-          $scope.checkAnswer(); // before every check ans, check if the audio is finished
+          $scope.checkAnswer();
         });
       };
 
@@ -171,15 +171,15 @@ controllers.controller('learnThaiCtrl',
 
       /* parsing JSON file */
       function readTextFile(file, callback) {
-          var rawFile = new XMLHttpRequest();
-          rawFile.overrideMimeType("application/json");
-          rawFile.open("GET", file, true);
-          rawFile.onreadystatechange = function() {
-              if (rawFile.readyState === 4 && rawFile.status == "200") {
-                  callback(rawFile.responseText);
-              }
-          }
-          rawFile.send(null);
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
       };
 
       function getJSON(url, callback) {
@@ -188,20 +188,11 @@ controllers.controller('learnThaiCtrl',
         });
       };
 
-      $rootScope.mainView = {
-        action : '',
-        slideRight: function (path) {
-          $rootScope.mainView.action = 'slide-right';
-          $location.url(path);
-        },
-        slideLeft: function (path) {
-          $rootScope.mainView.action = 'slide-left';
-          $location.url(path);
-        }
-      };
-
       function nextLevel() {
-        $location.url('learn-thai-level2');
+        if (level < jsons.length-1) {
+          level += 1;
+          $scope.pageLoad();
+        }
       };
     }
   ]
