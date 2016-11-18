@@ -11,7 +11,7 @@ app.
         }).
         when('/learn-thai-map', {
           templateUrl: 'components/learnThaiMap/learnThaiMap.html',
-          controller : 'learnThaiCtrl'
+          controller : 'learnThaiMapCtrl'
         }).
         otherwise('/learn-thai');
     }
