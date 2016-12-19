@@ -25,8 +25,10 @@ controllers.controller('learnThaiCtrl',
       var audio = document.getElementById('myAudio');
       var canvas = document.getElementById('analyser_render');
       var level = 0;
-      var jsons = ["json/level1.json", "json/level2.json"];
-      var music_lst = ['../../music/level1/', '../../music/level2/'];
+      var json_directory = 'json/';
+      var jsons = ["level1", "level2"];
+      var music_directory = '../../music/';
+      var music_lst = ['level1', 'level2'];
 
       /************************* functions ************************************/
       $timeout(function (){
@@ -35,37 +37,44 @@ controllers.controller('learnThaiCtrl',
       },0.5);
 
       $scope.pageLoad = function (){
-        getJSON(jsons[level], function(json) {
+        getJSON(json_directory + jsons[level] + '.json', function(json) {
+          // console.log('json " ', json);
+          questionIdx = -1;
           questions = json;
           incQuestion();
           $timeout(function (){
             updateAudioSource();
-            audio.addEventListener("ended", function(){
-              $scope.checkAnswer();
-            });
+            $scope.checkAnswer();
           },100);
         });
       };
 
       $scope.aud_play = function () {
         var myAudio = document.getElementById("myAudio");
-        if (myAudio.paused) {
-          myAudio.play();
-          $scope.audioRepeats += 1;
-        }
+
+        setTimeout(function () {
+          // Resume play if the element if is paused.
+          if (myAudio.paused) {
+            myAudio.play();
+            $scope.audioRepeats += 1;
+          }
+        }, 150);
+
       };
 
       function updateAudioSource() {
         var currAudioSource = document.getElementById('myAudioSource');
         audio.load(); //call this to just preload the audio without playing
         currAudioSource.src =
-          music_lst[level] + $scope.audio;
+          music_directory + music_lst[level] + '/' + $scope.audio;
         // need to disconnect media element source from the previous audio
         // Re-route audio playback into the processing graph of the AudioContext
         source.connect(analyser);
         analyser.connect(context.destination);
         frameLooper();
-        audio.play(); //call this to play the song right away
+        setTimeout(function () {
+          audio.play(); //call this to play the song right away
+        }, 150);
       };
 
       /* Initialize the MP3 player after the page loads
@@ -145,12 +154,11 @@ controllers.controller('learnThaiCtrl',
         $scope.hasAnswered = false;
         incQuestion();
         updateAudioSource();
-        audio.addEventListener("ended", function(){
-          $scope.checkAnswer();
-        });
+        $scope.checkAnswer();
       };
 
       function incQuestion() {
+        // console.log('questionIdx: ', questionIdx);
         questionIdx += 1;
         $scope.questionString = questions[questionIdx].question;
         $scope.choices = questions[questionIdx].choices;
@@ -184,6 +192,7 @@ controllers.controller('learnThaiCtrl',
 
       function getJSON(url, callback) {
         readTextFile(url, function(text){
+          // console.log('json parse');
           callback(JSON.parse(text));
         });
       };

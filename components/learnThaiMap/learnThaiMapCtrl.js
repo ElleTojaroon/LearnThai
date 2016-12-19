@@ -1,4 +1,3 @@
-
 'use strict';
 
 controllers.controller('learnThaiMapCtrl',
@@ -156,8 +155,6 @@ controllers.controller('learnThaiMapCtrl',
         questionIdx += 1;
         $scope.questionString = questions[questionIdx].question;
         $scope.choices = questions[questionIdx].choices;
-        console.log('choices', $scope.choices);
-        console.log('wrong', $('.lt-picture > :not(' + "#" + $scope.choices +')'));
         $scope.audio = questions[questionIdx].audioWord;
       };
 
