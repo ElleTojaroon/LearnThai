@@ -9,6 +9,10 @@ app.
           templateUrl: 'components/learnThai/learnThai.html',
           controller : 'learnThaiCtrl'
         }).
+        when('/chapter-summary', {
+          templateUrl: 'components/chapterSummary/chapterSummary.html',
+          controller : 'chapterSummaryCtrl'
+        }).
         when('/learn-thai-map', {
           templateUrl: 'components/learnThaiMap/learnThaiMap.html',
           controller : 'learnThaiMapCtrl'

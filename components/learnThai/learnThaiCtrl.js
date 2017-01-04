@@ -29,6 +29,7 @@ controllers.controller('learnThaiCtrl',
       var jsons = ["level1", "level2"];
       var music_directory = '../../music/';
       var music_lst = ['level1', 'level2'];
+      var currAudioSource = document.getElementById('myAudioSource');
 
       /************************* functions ************************************/
       $timeout(function (){
@@ -51,20 +52,13 @@ controllers.controller('learnThaiCtrl',
 
       $scope.aud_play = function () {
         var myAudio = document.getElementById("myAudio");
-
-        setTimeout(function () {
-          // Resume play if the element if is paused.
-          if (myAudio.paused) {
-            myAudio.play();
-            $scope.audioRepeats += 1;
-          }
-        }, 150);
-
+        if (myAudio.paused) {
+          myAudio.play();
+          $scope.audioRepeats += 1;
+        }
       };
 
       function updateAudioSource() {
-        var currAudioSource = document.getElementById('myAudioSource');
-        audio.load(); //call this to just preload the audio without playing
         currAudioSource.src =
           music_directory + music_lst[level] + '/' + $scope.audio;
         // need to disconnect media element source from the previous audio
@@ -72,9 +66,10 @@ controllers.controller('learnThaiCtrl',
         source.connect(analyser);
         analyser.connect(context.destination);
         frameLooper();
-        setTimeout(function () {
+        audio.load(); //call this to just preload the audio without playing
+        $timeout(function (){
           audio.play(); //call this to play the song right away
-        }, 150);
+        },1000);
       };
 
       /* Initialize the MP3 player after the page loads
