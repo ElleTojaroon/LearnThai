@@ -25,10 +25,32 @@ controllers.controller('chapterSummaryCtrl',
       ];
 
       $scope.playRecord = function (record) {
-        $(this).addClass('hvr-push lt-correct-choice');
         record = "../../music/level1/" + record;
         $scope.updateAudioSource(record);
       };
+
+      /**************************** Summary Events ****************************/
+
+      $(document.body).on('mouseenter', '.lt-summary-picture', function(ev){
+        var target = $(ev.target);
+        target.addClass('lt-mouse-enter-pic');
+      });
+
+      $(document.body).on('mouseleave', '.lt-summary-picture', function(ev){
+        var target = $(ev.target);
+        target.removeClass('lt-mouse-enter-pic');
+      });
+
+
+
+
+
+
+
+
+
+
+
 
     }
   ]);

@@ -247,10 +247,6 @@
       {
         "picture": "restaurant.jpg",
         "isCorrect": false
-      },
-      {
-        "picture": "restaurant.jpg",
-        "isCorrect": false
       }
     ],
     "audioWord": "among-restaurants.mp3"
@@ -273,10 +269,6 @@
       {
         "picture": "cinema.jpg",
         "isCorrect": false
-      },
-      {
-        "picture": "tree.jpg",
-        "isCorrect": false
       }
     ],
     "audioWord": "next-to-restaurant.mp3"
@@ -284,22 +276,6 @@
   {
     "question": "Select the picture that corresponds to the spoken word",
     "choices": [
-      {
-        "picture": "bakery.jpg",
-        "isCorrect": false
-      },
-      {
-        "picture": "restaurant.jpg",
-        "isCorrect": false
-      },
-      {
-        "picture": "tree.jpg",
-        "isCorrect": false
-      },
-      {
-        "picture": "tree.jpg",
-        "isCorrect": false
-      },
       {
         "picture": "tree.jpg",
         "isCorrect": false

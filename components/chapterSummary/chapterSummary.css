@@ -18,6 +18,19 @@
 
 .lt-summary-picture {
   width: auto;
-  height: 5rem;
+  height: 3.2rem;
   margin: 5px;
+  border-radius: 10%;
+}
+
+.lt-mouse-enter-pic {
+  border: solid 1.5px #FEF7C0;
+}
+
+.lt-record-chapter-header {
+  font-size: 1rem;
+  text-align: right;
+  margin-right: 2rem;
+  border-bottom: dashed 2px #E5D629;
+  padding-bottom: 4px;
 }

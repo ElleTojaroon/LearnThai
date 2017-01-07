@@ -80,11 +80,11 @@
     </div>
     <div class="lt-summary-panel
                 lb-flex-0
-                lb-flex-column
-                lb-align-center">
+                lb-flex-column">
       <div class="lt-summary-header
                   lb-flex-0">
       History</div>
+      <div class="lt-record-chapter-header">Chapter 1</div>
       <div class="lb-summary-pictures
                   lb-flex-row
                   lb-flex-0
@@ -96,8 +96,7 @@
              src="../../images/game/{{record.pic}}"
              class="lt-summary-picture
                     lb-flex-0"
-             ng-class="{red: hover}"
-             ng-mouseover="playRecord(record.audio)">
+             ng-click="playRecord(record.audio)">
       </div>
     </div>
   </div>
