@@ -4,19 +4,21 @@
              lb-flex-column
              lb-justify-start
              lb-scroll-y">
-  <md-toolbar class="md-whiteframe-z2
+<!--   <md-toolbar class="md-whiteframe-z2
                      header
                      lb-flex-0">
-  Andersen Group</md-toolbar>
+  Andersen Group</md-toolbar> -->
   <div class="body
-              lb-flex-column
+              lb-flex-row
               lb-flex-0">
     <div class="lt-game-background
-                lb-flex-0
+                lb-flex-1
+                lb-flex-basis-0
                 lb-flex-column
                 lb-align-center">
       <div class="lt-canvas-container
-                  lb-flex-0
+                  lb-flex-1
+                  lb-flex-basis-0
                   lb-flex-column">
         <div class="lt-question-string
                     lb-flex-0"
@@ -75,6 +77,28 @@
              class="lt-microphone-icon">
         </div>
       </div> -->
+    </div>
+    <div class="lt-summary-panel
+                lb-flex-0
+                lb-flex-column
+                lb-align-center">
+      <div class="lt-summary-header
+                  lb-flex-0">
+      History</div>
+      <div class="lb-summary-pictures
+                  lb-flex-row
+                  lb-flex-0
+                  lb-flex-wrap
+                  lb-justify-center
+                  lb-align-start
+                  ">
+        <img ng-repeat="record in records"
+             src="../../images/game/{{record.pic}}"
+             class="lt-summary-picture
+                    lb-flex-0"
+             ng-class="{red: hover}"
+             ng-mouseover="playRecord(record.audio)">
+      </div>
     </div>
   </div>
 </div>

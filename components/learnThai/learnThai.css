@@ -52,7 +52,7 @@ div[ng-view].ng-scope {
   margin: auto;
   max-width: 20rem;
   max-height: 15rem;
-  width: auto;
+  width: 8rem;
   height: auto;
   padding: 3px;
   border: 2px solid transparent;

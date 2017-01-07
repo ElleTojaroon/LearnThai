@@ -1,0 +1,23 @@
+.lt-summary-panel {
+  width: 30%;
+  height: 100%;
+  background: #98DAC6;
+}
+
+.lt-summary-header {
+  color: white;
+  text-align: center;
+  height: 3rem;
+  width: 100%;
+  line-height: 3rem;
+}
+
+.lb-summary-pictures {
+  width: 100%;
+}
+
+.lt-summary-picture {
+  width: auto;
+  height: 5rem;
+  margin: 5px;
+}

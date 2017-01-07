@@ -44,7 +44,7 @@ controllers.controller('learnThaiCtrl',
           questions = json;
           incQuestion();
           $timeout(function (){
-            updateAudioSource();
+            updateMainAudioSource();
             $scope.checkAnswer();
           },100);
         });
@@ -58,17 +58,24 @@ controllers.controller('learnThaiCtrl',
         }
       };
 
-      function updateAudioSource() {
-        currAudioSource.src =
-          music_directory + music_lst[level] + '/' + $scope.audio;
+      function updateMainAudioSource() {
+        var s = music_directory + music_lst[level] + '/' + $scope.audio;
+        $scope.updateAudioSource(s);
+      };
+
+      $scope.updateAudioSource = function(s) {
+        currAudioSource.src = s;
         // need to disconnect media element source from the previous audio
         // Re-route audio playback into the processing graph of the AudioContext
         source.connect(analyser);
         analyser.connect(context.destination);
         frameLooper();
-        audio.load(); //call this to just preload the audio without playing
+        audio.pause();
         $timeout(function (){
-          audio.play(); //call this to play the song right away
+          if (audio.paused) {
+            audio.load(); //call this to just preload the audio without playing
+            audio.play(); //call this to play the song right away
+          }
         },1000);
       };
 
@@ -148,7 +155,7 @@ controllers.controller('learnThaiCtrl',
       function nextQuestion_helper() {
         $scope.hasAnswered = false;
         incQuestion();
-        updateAudioSource();
+        updateMainAudioSource();
         $scope.checkAnswer();
       };
 
