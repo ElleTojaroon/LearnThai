@@ -34,3 +34,11 @@
   border-bottom: dashed 2px #E5D629;
   padding-bottom: 4px;
 }
+
+.lt-no-history {
+  font-size: 1.5rem;
+  color: grey;
+  text-align: center;
+  font-style: italic;
+  line-height: 4rem;
+}

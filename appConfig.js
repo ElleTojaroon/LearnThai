@@ -17,6 +17,6 @@ app.
           templateUrl: 'components/learnThaiMap/learnThaiMap.html',
           controller : 'learnThaiMapCtrl'
         }).
-        otherwise('/learn-thai');
+        otherwise('/chapter-summary');
     }
   ]);

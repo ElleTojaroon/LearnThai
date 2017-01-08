@@ -38,7 +38,7 @@ controllers.controller('learnThaiCtrl',
       },0.5);
 
       $scope.pageLoad = function (){
-        getJSON(json_directory + jsons[level] + '.json', function(json) {
+        $scope.getJSON(json_directory + jsons[level] + '.json', function(json) {
           // console.log('json " ', json);
           questionIdx = -1;
           questions = json;
@@ -192,7 +192,7 @@ controllers.controller('learnThaiCtrl',
         rawFile.send(null);
       };
 
-      function getJSON(url, callback) {
+      $scope.getJSON = function(url, callback) {
         readTextFile(url, function(text){
           // console.log('json parse');
           callback(JSON.parse(text));

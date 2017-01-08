@@ -78,25 +78,31 @@
         </div>
       </div> -->
     </div>
-    <div class="lt-summary-panel
+    <div
+          class="lt-summary-panel
                 lb-flex-0
                 lb-flex-column">
       <div class="lt-summary-header
                   lb-flex-0">
       History</div>
-      <div class="lt-record-chapter-header">Chapter 1</div>
-      <div class="lb-summary-pictures
-                  lb-flex-row
-                  lb-flex-0
-                  lb-flex-wrap
-                  lb-justify-center
-                  lb-align-start
-                  ">
-        <img ng-repeat="record in records"
-             src="../../images/game/{{record.pic}}"
-             class="lt-summary-picture
-                    lb-flex-0"
-             ng-click="playRecord(record.audio)">
+      <div ng-if="records.length == 0"
+           class="lt-no-history">No History</div>
+      <div ng-repeat="record in records">
+        <div class="lt-record-chapter-header">
+          Chapter {{ record.chapter }}</div>
+        <div class="lb-summary-pictures
+                    lb-flex-row
+                    lb-flex-0
+                    lb-flex-wrap
+                    lb-justify-center
+                    lb-align-start
+                    ">
+          <img ng-repeat="word in record.words"
+               src="../../images/game/{{word.pic}}"
+               class="lt-summary-picture
+                      lb-flex-0"
+               ng-click="playRecord(record.chapter, word.audio)">
+        </div>
       </div>
     </div>
   </div>
