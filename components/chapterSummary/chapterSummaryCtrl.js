@@ -15,7 +15,7 @@ controllers.controller('chapterSummaryCtrl',
       $scope.totalLife = 5;
       $scope.life = 5;
       $scope.audioRepeats = 0;
-      $scope.btnReplay = "Tap to replay";
+      $scope.btnReplay = "Replay this question";
       $scope.records = [];
 
       /************************* local variables ******************************/
@@ -47,21 +47,21 @@ controllers.controller('chapterSummaryCtrl',
           questions = json;
           incQuestion();
           $timeout(function (){
-            updateMainAudioSource();
+            $scope.updateMainAudioSource();
             $scope.checkAnswer();
           },100);
         });
       };
 
-      $scope.aud_play = function () {
-        var myAudio = document.getElementById("myAudio");
-        if (myAudio.paused) {
-          myAudio.play();
-          $scope.audioRepeats += 1;
-        }
-      };
+      // $scope.aud_play = function () {
+      //   var myAudio = document.getElementById("myAudio");
+      //   if (myAudio.paused) {
+      //     myAudio.play();
+      //     $scope.audioRepeats += 1;
+      //   }
+      // };
 
-      function updateMainAudioSource() {
+      $scope.updateMainAudioSource = function() {
         var s = music_directory + music_lst[level] + '/' + $scope.audio;
         $scope.updateAudioSource(s);
       };
@@ -158,7 +158,7 @@ controllers.controller('chapterSummaryCtrl',
       function nextQuestion_helper() {
         $scope.hasAnswered = false;
         incQuestion();
-        updateMainAudioSource();
+        $scope.updateMainAudioSource();
         $scope.checkAnswer();
       };
 
