@@ -1,35 +1,42 @@
 <template>
   <div>
     <div class="container" id="lt-container-box">
-      <div class="row">
-        <div class="col-xs-10">
-          <div class="row">
+      <div class="row lt-topbar">
+        <div class="col-xs-11 lt-topbar">
+          <div class="row lt-topbar lt-no-padding" style="padding:1rem;">
             <div class="col-xs-1">
-              <a @click="toggleTooltip"
-                id="id_howto"
-                class="btn btn-link btn-sm"
-                data-toggle="popover"
-                data-trigger="click">?</a></div>
-                <div class="popover fade bottom invisible" role="tooltip" id="" style="display: block;" :class="{lin: show_tooltip}"
-                :style="{top: tooltip_y, left: tooltip_x}">
-                  <div class="arrow" style="left: 50%;"></div><h3 class="popover-title"><h1>Notes</h1></h3><div class="popover-content"><lt-navbar>content2</lt-navbar></div>
-                </div>
+              <el-popover
+                ref="popover-note"
+                placement="bottom"
+                title="Memory refresher"
+                width="500"
+                trigger="click">
+                <lt-history-row></lt-history-row>
+              </el-popover>
+
+              <el-button type="text" v-popover:popover-note><i class="fa fa-book"></el-button>
+            </div>
             <div class="col-xs-1">
-              <a @click="notes_popover"
-                  id="id_notes"
-                  class="btn btn-link btn-sm"
-                  data-toggle="popover"
-                  data-trigger="click">Notes</a></div>
+              <el-button type="text"><i class="fa fa-question-circle"></el-button>
+            </div>
           </div>
         </div>
-        <div class="col-xs-2">
-          <p><small><a href="#" class="btn btn-link btn-sm">Quit</a></small></p>
+        <div class="col-xs-1">
+          <el-button type="text" @click="dialogVisible = true"><i class="fa fa-close"></i></el-button>
         </div>
       </div>
 
       <h1>Game Level 1</h1>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+      <el-button type="primary">Primary Button</el-button>
     </div>
+
+    <el-dialog title="Are you sure you want to exit the game?" v-model="dialogVisible" size="tiny">
+      <span>No change will be saved after you exit</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="exit">Exit</el-button>
+      </span>
+    </el-dialog>
 
   </div>
 </template>
@@ -38,44 +45,25 @@
   export default {
     data() {
       return {
-        show_tooltip: false,
-        tooltip_x: '100px',
-        tooltip_y: '100px'
+        dialogVisible: false
       }
     },
     methods: {
-      toggleTooltip(event){
-        var element = document.getElementById('id_notes');
-        var style = window.getComputedStyle(element);
-        var width = style.getPropertyValue('width');
-        var height = style.getPropertyValue('height');
-
-        console.log('height', height);
-        console.log('eventX', event.clientX);
-
-        console.log('width', width);
-        console.log('eventY', event.clientY);
-
-
-        this.tooltip_x = width;
-        this.tooltip_y = height;
-
-        console.log('tooltip_x', this.tooltip_x);
-        console.log('tooltip_y', this.tooltip_y);
-
-        this.show_tooltip = !this.show_tooltip;
-      },
-      notes_popover() {
-        $('#id_notes').popover(
-          {
-            title: "<h1>Notes</h1>",
-            content: "<lt-navbar>content2</lt-navbar>",
-            html: true,
-            placement: "bottom"
-          });
-        console.log('click2');
+      exit() {
+        this.dialogVisible = false
+        return this.$router.push('/')
       }
     }
   }
 </script>
+
+<style scoped>
+  .lt-topbar {
+    height: 25px !important;
+  }
+
+  .lt-no-padding {
+    padding: 0 !important;
+  }
+</style>
 

@@ -1,38 +1,19 @@
 <template>
   <div>
-    <!-- nav bar -->
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="navbar-brand" id="lt-navbar-logo">
-            <div class="row">
-              <div class="col-md-4 col-md-offset-0">
-                <img src="../../static/images/icons/learnthai_icon.jpg" id="lt-navbar-icon">
-              </div>
-            </div>
-            <div class="row">Learn Thai</div>
+    <el-menu default-active="1" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <div class="navbar-brand" id="lt-navbar-logo">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-0">
+            <img src="../../static/images/icons/learnthai_icon.jpg" id="lt-navbar-icon">
           </div>
         </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-          <ul class="nav navbar-nav">
-            <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><router-link to="/">Home<span class="sr-only">(current)</span></router-link></li>
-            <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><router-link to="/history">History</router-link></li>
-            <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><router-link to="/about">What is Learn Thai?</router-link></li>
-            <li data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"><router-link to="/game-level-1">Play!</router-link></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://www.cs.cornell.edu/~eland/" target="_blank">Andersen Group</a></li>
-          </ul>
-        </div>
+        <div class="row">Learn Thai</div>
       </div>
-    </nav>
+      <el-menu-item index="1"><i class="fa fa-home"></i><span class="sr-only">(current)</span></el-menu-item>
+      <el-menu-item index="2"><i class="fa fa-history"></i></el-menu-item>
+      <el-menu-item index="3">What is Learn Thai?</el-menu-item>
+      <el-menu-item index="4"><i class="fa fa-play"></i></el-menu-item>
+    </el-menu>
 
     <!-- content -->
     <router-view></router-view>
@@ -43,6 +24,17 @@
   export default {
     data() {
       return {
+        keyRoute: {
+          1: "/",
+          2: "/history",
+          3: "/about",
+          4: "game-level-1"
+        }
+      }
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        this.$router.push(this.keyRoute[key + ""]);
       }
     }
   }

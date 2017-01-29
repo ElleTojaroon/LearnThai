@@ -39,3 +39,7 @@ a {
   opacity: 1;
 }
 
+.l-popover-button {
+  position: relative;
+}
+
