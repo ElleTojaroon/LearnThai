@@ -11,5 +11,7 @@
   #lt-container-box {
     background-color: rgba(255,255,255,0.9);
     border-radius: 5px;
+    padding-bottom: 5px;
+    margin-top: 15px;
   }
 </style>

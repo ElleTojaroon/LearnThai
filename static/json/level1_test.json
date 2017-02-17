@@ -1,0 +1,12 @@
+[
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": [
+      {
+        "picture": "cinema.jpg",
+        "isCorrect": true
+      }
+    ],
+    "audioWord": "cinema.mp3"
+  }
+]

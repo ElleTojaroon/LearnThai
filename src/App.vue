@@ -9,11 +9,12 @@
 
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="../static/css/bootstrap.css">
+      <link rel="stylesheet" href="../static/css/font-awesome.min.css">
       <link rel="stylesheet" href="../static/css/custom.css">
     </head>
 
     <body id="app">
-      <lt-navbar></lt-navbar>
+      <lt-navbar :curr-game-level="1"></lt-navbar>
     </body>
   </div>
 </template>

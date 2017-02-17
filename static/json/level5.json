@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": "btnBakery",
+    "audioWord": "Next-to-restaurant.mp3"
+  },
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": "btnBank",
+    "audioWord": "Next-to-cinema.mp3"
+  },
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": "btnBakery",
+    "audioWord": "Between-restaurant-and-cinema.mp3"
+  },
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": "btnBakery",
+    "audioWord": "right-of-cinema.mp3"
+  }
+]
