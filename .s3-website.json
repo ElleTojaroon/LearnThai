@@ -1,0 +1,10 @@
+{
+   "index": "index.html",
+   "region": "us-east-1",
+   "uploadDir": "./dist/b02bdc1b846fd65473922f5f62832108.ttf",
+   "prefix": "",
+   "corsConfiguration": [],
+   "enableCloudfront": false,
+   "retries": 20,
+   "domain": "https://console.aws.amazon.com/s3/home?region=us-west-2"
+}

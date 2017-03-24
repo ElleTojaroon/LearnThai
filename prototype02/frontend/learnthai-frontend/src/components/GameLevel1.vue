@@ -1,69 +1,145 @@
 <template>
   <div>
-    <div class="container" id="lt-container-box">
-      <div class="row lt-topbar">
-        <div class="col-xs-11 lt-topbar">
-          <div class="row lt-topbar lt-no-padding" style="padding:1rem;">
-            <div class="col-xs-1">
-              <el-popover
-                ref="popover-note"
-                placement="bottom"
-                title="Memory refresher"
-                width="500"
-                trigger="click">
-                <lt-history-row></lt-history-row>
-              </el-popover>
-
-              <el-button type="text" v-popover:popover-note><i class="fa fa-book"></el-button>
-            </div>
-            <div class="col-xs-1">
-              <el-button type="text"><i class="fa fa-question-circle"></el-button>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-1">
-          <el-button type="text" @click="dialogVisible = true"><i class="fa fa-close"></i></el-button>
-        </div>
-      </div>
-
-      <h1>Game Level 1</h1>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      <el-button type="primary">Primary Button</el-button>
-    </div>
-
-    <el-dialog title="Are you sure you want to exit the game?" v-model="dialogVisible" size="tiny">
-      <span>No change will be saved after you exit</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="exit">Exit</el-button>
-      </span>
-    </el-dialog>
-
+    <h5 class="lt-text-center">{{ questionString }}</h5>
+    <el-row type="flex" class="row-bg" justify="center">
+      <img v-for="choice in choices"
+        :src="'../../static/images/game/' + choice.picture"
+        @click="selectChoice(choice, choice.isCorrect)"
+        class="lt-choices"
+        :class="{
+          'lt-wrong-choice' : showAllWrongChoices,
+          'hvr-push': selectedAnswer==choice && !hasChecked,
+          'lt-correct-choice' : showCorrectChoice==choice,
+          'lt-picked-wrong-choice' : showPickedWrongChoice==choice
+           }">
+<!--             :class="{
+          'hvr-push lt-correct-choice' : showCorrectChoice,
+          'hvr-wobble-horizontal lt-wrong-choice' : showPickedWrongChoice,
+          'lt-wrong-pics' : showAllWrongChoices & !choice.isCorrect }"> -->
+    </el-row>
+    <el-row type="flex" class="row-bg" justify="end">
+      <i class="el-icon-check lt-check-symbol"
+        v-if="hasChecked & hasAnsweredCorrectly"></i>
+      <i class="el-icon-close lt-cross-symbol"
+        v-if="hasChecked & !hasAnsweredCorrectly"></i>
+      <el-button type="info" v-if="!hasChecked"
+        @click="checkAnswer()">Check</el-button>
+      <el-button type="warning" v-if="hasChecked"
+        @click="nextQuestion()">Next</el-button>
+    </el-row>
   </div>
 </template>
 
 <script>
+  import _ from 'lodash'
+
   export default {
+    props: ['currGameLevel'],
     data() {
       return {
-        dialogVisible: false
+        questionString: 'question',
+        choices: {},
+        questions: {},
+        questionIdx: -1,
+        jsonDirectory: '../../static/json/',
+        jsonLevel: "level" + this.currGameLevel,
+        jsonLevelTest: "level" + this.currGameLevel + "_test",
+        showCorrectChoice: {},
+        showPickedWrongChoice: {},
+        showAllWrongChoices: false,
+        selectedAnswer: {},
+        correctAnswer: {},
+        hasChecked: false,
+        hasAnsweredCorrectly: false
       }
     },
     methods: {
-      exit() {
-        this.dialogVisible = false
-        return this.$router.push('/')
+      readTextFile(file, callback) {
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
+      },
+      getJSON(url, callback) {
+        this.readTextFile(url, function(text){
+          console.log('json parse');
+          callback(JSON.parse(text));
+        })
+      },
+      resetChoiceAnimation() {
+        this.showCorrectChoice = false;
+        this.showPickedWrongChoice = false;
+        this.showAllWrongChoices = false
+      },
+      getCorrectAnswer: function(choices) {
+        for (var i = choices.length - 1; i >= 0; i--) {
+          if (choices[i].isCorrect) {
+            this.correctAnswer = choices[i];
+          }
+        };
+      },
+      nextQuestion: _.debounce(function() {
+        this.resetChoiceAnimation();
+        if (this.questionIdx < this.questions.length - 1) {
+          this.questionIdx += 1;
+          this.questionString = this.questions[this.questionIdx].question;
+          this.choices = this.questions[this.questionIdx].choices;
+          this.showAllWrongChoices = false;
+          this.hasChecked = false;
+          this.getCorrectAnswer(this.choices);
+          // console.log('choices ', this.choices);
+          // console.log('choices_id ', this.choices[0].isCorrect);
+          // this.audio = this.questions[this.questionIdx].audioWord;
+        } else {
+          // set this to API
+          this.currGameLevel += 1;
+          console.log('go to summary');
+        }
+      }, 1000),
+      selectChoice: function(choice, isCorrect) {
+        if (!this.hasChecked) {
+          this.selectedAnswer = choice;
+        }
+      },
+      checkAnswer: function() {
+        if (!this.hasChecked) {
+          if (this.selectedAnswer.isCorrect) {
+            this.showCorrectChoice = this.selectedAnswer;
+            this.showAllWrongChoices = true;
+            this.hasAnsweredCorrectly = true;
+          } else {
+            this.hasAnsweredCorrectly = false;
+            this.showPickedWrongChoice = this.selectedAnswer;
+            this.showAllWrongChoices = true;
+            this.showCorrectChoice = this.correctAnswer;
+          }
+          this.hasChecked = true;
+        }
+      },
+      pageLoad(json) {
+        console.log('json ', json);
+        this.questions = json;
+        console.log('this.questions ', this.questions);
+        this.nextQuestion();
+      },
+      newSublevel: function() {
+        this.getJSON(this.jsonDirectory + this.jsonLevel + '.json', this.pageLoad)
       }
+    },
+    created() {
+      console.log('created');
+      this.newSublevel();
     }
   }
 </script>
 
-<style scoped>
-  .lt-topbar {
-    height: 25px !important;
-  }
-
-  .lt-no-padding {
-    padding: 0 !important;
+<style>
+  .lt-text-center {
+    text-align: center;
   }
 </style>
-

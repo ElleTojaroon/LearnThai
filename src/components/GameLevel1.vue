@@ -27,6 +27,8 @@
       <el-button type="warning" v-if="hasChecked"
         @click="nextQuestion()">Next</el-button>
     </el-row>
+
+    <lt-audio-visualizer :audioSrc="audio"></lt-audio-visualizer>
   </div>
 </template>
 
@@ -44,13 +46,17 @@
         jsonDirectory: '../../static/json/',
         jsonLevel: "level" + this.currGameLevel,
         jsonLevelTest: "level" + this.currGameLevel + "_test",
+        musicDirectory : '../../static/music/',
+        musicList : ['level1', 'level2', 'level3'],
+        currAudioSource : {},
         showCorrectChoice: {},
         showPickedWrongChoice: {},
         showAllWrongChoices: false,
         selectedAnswer: {},
         correctAnswer: {},
         hasChecked: false,
-        hasAnsweredCorrectly: false
+        hasAnsweredCorrectly: false,
+        audio: ""
       }
     },
     methods: {
@@ -89,18 +95,21 @@
           this.questionIdx += 1;
           this.questionString = this.questions[this.questionIdx].question;
           this.choices = this.questions[this.questionIdx].choices;
+          this.audio = this.musicDirectory + this.musicList[this.currGameLevel-1] + "/" + this.questions[this.questionIdx].audioWord;
+          console.log('audio source in gamelevel1', this.audio);
           this.showAllWrongChoices = false;
           this.hasChecked = false;
           this.getCorrectAnswer(this.choices);
-          // console.log('choices ', this.choices);
-          // console.log('choices_id ', this.choices[0].isCorrect);
-          // this.audio = this.questions[this.questionIdx].audioWord;
         } else {
           // set this to API
-          this.currGameLevel += 1;
+          this.$emit('levelAdvanced');
           console.log('go to summary');
+          // this.goToSummary();
         }
-      }, 1000),
+      }, 0),
+      goToSummary: function() {
+        this.$router.push('/history');
+      },
       selectChoice: function(choice, isCorrect) {
         if (!this.hasChecked) {
           this.selectedAnswer = choice;
@@ -128,7 +137,7 @@
         this.nextQuestion();
       },
       newSublevel: function() {
-        this.getJSON(this.jsonDirectory + this.jsonLevel + '.json', this.pageLoad)
+        this.getJSON(this.jsonDirectory + this.jsonLevelTest + '.json', this.pageLoad)
       }
     },
     created() {

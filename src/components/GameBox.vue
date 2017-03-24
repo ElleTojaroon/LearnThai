@@ -14,10 +14,10 @@
                 <lt-history-row></lt-history-row>
               </el-popover>
 
-              <el-button type="text" v-popover:popover-note><i class="fa fa-book"></el-button>
+              <el-button type="text" v-popover:popover-note><i class="fa fa-book"></i></el-button>
             </div>
             <div class="col-xs-1">
-              <el-button type="text"><i class="fa fa-question-circle"></el-button>
+              <el-button type="text"><i class="fa fa-question-circle"></i></el-button>
             </div>
           </div>
         </div>
@@ -27,7 +27,8 @@
       </div>
 
       <!-- game content -->
-      <slot><lt-game-level1></lt-game-level1></slot>
+      <!-- default is lt-game-level1 but the component is sent from Game's attribute is -->
+      <slot :levelAdvanced="incrLevel"><lt-game-level1 :levelAdvanced="incrLevel"></lt-game-level1></slot>
     </div>
 
     <el-dialog title="Are you sure you want to exit the game?" v-model="dialogVisible" size="tiny">
@@ -44,13 +45,19 @@
   export default {
     data() {
       return {
-        dialogVisible: false
+        dialogVisible: false,
+        currGameLevel: 1
       }
     },
     methods: {
       exit() {
         this.dialogVisible = false
         return this.$router.push('/')
+      },
+      incrLevel: function() {
+        this.currGameLevel += 1;
+        // this.$emit('incrLevel');
+        console.log('incrLevel');
       }
     }
   }

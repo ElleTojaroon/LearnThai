@@ -2,6 +2,8 @@ from flask import Flask, abort, render_template
 from speech_recognition import *
 app = Flask(__name__)
 
+# authGoogleAPI()
+
 @app.route("/")
 def hello():
   return "Hello World!"
@@ -12,7 +14,6 @@ def hello_ja():
 
 @app.route('/q/<string:filename>')
 def q_filename(filename):
-  assert not does_blob_exist(filename), "invalid audio filename"
   return speech_to_text(filename)
 
 @app.route('/validate_speech/<string:word>/blob_text/<string:blob_text>',

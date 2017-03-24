@@ -16,19 +16,20 @@
     </el-menu>
 
     <!-- content -->
-    <router-view></router-view>
+    <router-view :curr-game-level="currGameLevel"></router-view>
   </div>
 </template>
 
 <script>
   export default {
+    props: ['currGameLevel'],
     data() {
       return {
         keyRoute: {
           1: "/",
           2: "/history",
           3: "/about",
-          4: "game-level-1"
+          4: "/game/" + this.currGameLevel
         }
       }
     },

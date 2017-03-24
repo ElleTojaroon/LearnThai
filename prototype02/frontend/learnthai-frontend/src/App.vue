@@ -14,7 +14,7 @@
     </head>
 
     <body id="app">
-      <lt-navbar></lt-navbar>
+      <lt-navbar :curr-game-level="1"></lt-navbar>
     </body>
   </div>
 </template>

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "crested-library-155303",
+  "private_key_id": "de55c9181e6a515e024a94f98ee25f5e213724fb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDW82SmdUvULVux\nSbwAF3w7wsiEAi9KS14wkgQ+rMgpEA6jSeBPWL4vEqoLzE1Tb2y2bMcWDB5wGVVl\n5qtL6SN9fAu8NZCCSUxtFt97br1gs60jxpVpTZrWAvtQ3vxigYLPeQ0Dlnqrg8Bb\nGpjz+yBmq9+SRxVuKSnfCHjxXKl5k8Z2MAYmPReKzJDDARR6XBkZpUpVWX/w7AOM\nmoAdS0v5YpEIaT+jszQGEZ/RIGQ+v9ctmV/sZznktMBLktHphJGgV7v5ild53d6v\nS1MuHWHd0jGNu5rotZ4T8IiR5LNpmoyEHkDfPTA/yVeu8SY2kKqx05Dm+hzuvBUN\nwHlWIPnXAgMBAAECggEBAJBrzidtTfqMUzwl/3PMU8NPVywiz6VKSEm4AbQeoQm9\n6SfbHiQRyw6Tqr7skNPLXK6hHY55rAXDb7ZcqqEBTsAkFTpqfuKa3we4w4UKXaFY\nd68+4Op0ouDB9htbBxYkUECX45+Sfm84wYg0sanUA+wX9MoyinqOm7xn0+LPUGsH\nHHp/Z51mEFr146Ow19feMnwSoC2lkbZmtpa4I1+9Nczh1DEeM/MpVR5k+AnhIBYg\neiIsRWedDhySmsrcIVIIteiOMvDEX57MTqsnPZw5naSa26RizmNrS2wLL55GIBZV\nl7Mmwzb+vutfXgFbTLLrpqQo0Z+kVuw3Bui8ChOA4mkCgYEA8tq/KKgF/5lQjZHI\nDa69a5n7Q+kK+AMv+5Cjx/7o4QZaKFd/jwgKzQxyYzX+z65XZhuAgYZPKmQsuJbr\nye1BFKNiZGrq/j2iqyZyJ5TLuY0GuGIZh6vTVxbdaPOMe0qk5L4szGKqSGt2tKv+\nA7GuQp+o7cBeVSPCEVWApa4/TUsCgYEA4pX7fUOISPQj0bIiuLwhrzBeajW9XRM8\nqvjiTmyTsspKr6MvIrU+KKoEx0czr0zmgc+LQhVQZ2XIm5/Akfy0jkbhZ06U1b46\njaJt/m82xm+MCYsswmU0YAzMLHDvMMCNAaIUsj+NXZH5SyeXrWMBVq7UNFkr6dXc\nQjg9q8OVqiUCgYBhS2HqV+aPUE0FarJLSQZ6ZWZU/rh2RFCk6H21UlraTEEyiFuC\nYiZxn9r0BF3htmctcTc6rSRqR1fjXBN7AqJgMlTpBiy/TtIs32o8kVBNNkLK/AJe\naGhzK6XotipB+tW1DrvD5oNyIBuepolN0ZGO/4geOEOSuJC3gRnZRsX1oQKBgQDF\nl6NjXkP30qd101FCJhV9z8FV/50uEHuEYVwApeC7Nnug5L5TFxion3NhUK86vOX6\n58F6FFo0gOdLByoIZQYTWK5xx241Yxlur+oZymRK8bV+ERcsQtNEu4RFcQq1SgTt\nGqnPs2oU4hoytsknk8H0FKvLJsQLu8rDGIZ3Ri063QKBgDhOLYMwjQ2sbClPUs9l\nckjWAN29cyV0wmHOPV/uVyGzpkPom7bizfWm2iOLZX/eWBZB4EInFf4cHQ63ttWk\nVb6zDUOmKn9ci5GUh+Guf/uXbLTNqcRymw781/SB1HojEL63TySzQBV5enlR6Tg4\nUo5epKXf89o49EPYZGRo8ssB\n-----END PRIVATE KEY-----\n",
+  "client_email": "learnthai@crested-library-155303.iam.gserviceaccount.com",
+  "client_id": "114764599332715527046",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/learnthai%40crested-library-155303.iam.gserviceaccount.com"
+}
