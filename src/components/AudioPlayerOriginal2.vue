@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import * as SiriWave from 'siriwavejs-master'
+  import * as SiriWave from 'siriwavejs'
 
   export default {
     name: 'lt-audio-visualizer',
