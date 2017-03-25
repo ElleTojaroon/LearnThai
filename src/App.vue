@@ -14,6 +14,7 @@
     </head>
 
     <body id="app">
+      <link rel="shortcut icon" href="">
       <lt-navbar :curr-game-level="1"></lt-navbar>
     </body>
   </div>
