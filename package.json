@@ -47,7 +47,8 @@
     "vue-template-compiler": "^2.1.0",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.1.0-beta.9",
-    "which": "^1.2.12"
+    "which": "^1.2.12",
+    "siriwavejs-master": "2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
