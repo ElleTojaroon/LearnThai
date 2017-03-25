@@ -1,0 +1,22 @@
+[
+  {
+    "pic": "cinema.jpg",
+    "audio": "cinema.mp3"
+  },
+  {
+    "pic": "bakery.jpg",
+    "audio": "bakery.mp3"
+  },
+  {
+    "pic": "restaurant.jpg",
+    "audio": "restaurant.mp3"
+  },
+  {
+    "pic": "tree.jpg",
+    "audio": "tree.mp3"
+  },
+  {
+    "pic": "airport.jpg",
+    "audio": "airport.mp3"
+  }
+]
