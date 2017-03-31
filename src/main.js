@@ -54,6 +54,4 @@ new Vue({
   components: { App }
 }).$mount('#app')
 
-window.location = "http://learnthai.com.s3-website-us-west-1.amazonaws.com";
-
 Vue.config.devtools = true
