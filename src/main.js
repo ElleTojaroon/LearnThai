@@ -33,13 +33,13 @@ Vue.use(VueResource)
 
 const routes = [
   {path: '/', component: Home},
-  {path: '/history', component: ltHistory},
-  {path: '/about', component: About},
-  {path: '/game/:level', component: Game},
+  {path: '*/history', component: ltHistory},
+  {path: '*/about', component: About},
+  {path: '*/game/:level', component: Game},
   // {path: '/audio', component: VoiceVisualizer},
   // {path: '/audio-player', component: AudioPlayer},
-  {path: '/audio-player2', component: AudioPlayerOriginal},
-  {path: '/audio-alone', component: AudioAlone}
+  {path: '*/audio-player2', component: AudioPlayerOriginal},
+  {path: '*/audio-alone', component: AudioAlone}
 ]
 
 const router = new VueRouter({
