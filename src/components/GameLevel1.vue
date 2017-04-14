@@ -39,6 +39,7 @@
     props: ['currGameLevel'],
     data() {
       return {
+        isTest: 1,
         questionString: 'question',
         choices: {},
         questions: {},
@@ -137,7 +138,13 @@
         this.nextQuestion();
       },
       newSublevel: function() {
-        this.getJSON(this.jsonDirectory + this.jsonLevel + '.json', this.pageLoad)
+        var level = 0;
+        if (!this.isTest) {
+          level = this.jsonLevel;
+        } else {
+          level = this.jsonLevelTest;
+        }
+        this.getJSON(this.jsonDirectory + this.jsonLevelTest + '.json', this.pageLoad)
       }
     },
     created() {

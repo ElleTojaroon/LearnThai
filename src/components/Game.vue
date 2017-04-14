@@ -9,7 +9,9 @@
     props: ['currGameLevel'],
     data() {
       return {
-        currLevel: 'lt-game-level' + this.currGameLevel
+        currLevel: 'lt-game-level' + this.currGameLevel,
+        dmndLevel: this.$route.params.level,
+        isDmndLevel: false
       }
     },
     methods: {
@@ -17,6 +19,16 @@
         this.currGameLevel += 1;
         // this.$emit('incrLevel');
         console.log('incrLevel');
+      }
+    },
+    mounted() {
+      console.log('this.$route ', typeof this.$route.params.level != 'undefined');
+      this.isDmndLevel = typeof this.$route.params.level != 'undefined';
+
+      if (!this.isDmndLevel) {
+        this.currLevel = 'lt-game-level' + this.currGameLevel;
+      } else {
+        this.currLevel = 'lt-game-level' + this.dmndLevel;
       }
     }
   }

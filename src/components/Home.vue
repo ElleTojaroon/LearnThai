@@ -17,7 +17,7 @@
         this.$router.push('/history');
       },
       goGame() {
-        this.$router.push('/game/' + this.currGameLevel);
+        this.$router.push('/game/currLevel');
       }
     }
   }

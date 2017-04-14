@@ -29,7 +29,7 @@
           1: "/",
           2: "/history",
           3: "/about",
-          4: "/game/" + this.currGameLevel
+          4: "/game/currLevel"
         }
       }
     },
