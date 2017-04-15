@@ -45,8 +45,8 @@
         questions: {},
         questionIdx: -1,
         jsonDirectory: '../../static/json/',
-        jsonLevel: "level" + this.currGameLevel,
-        jsonLevelTest: "level" + this.currGameLevel + "_test",
+
+
         musicDirectory : '../../static/music/',
         musicList : ['level1', 'level2', 'level3'],
         currAudioSource : {},
@@ -58,6 +58,17 @@
         hasChecked: false,
         hasAnsweredCorrectly: false,
         audio: ""
+      }
+    },
+    computed: {
+      jsonLevel: function() {
+        return "level" + this.currGameLevel;
+      },
+      jsonLevelTest: function() {
+        return "level" + this.currGameLevel + "_test";
+      },
+      audioPath: function() {
+        return this.musicDirectory + this.musicList[this.currGameLevel-1] + "/";
       }
     },
     methods: {
@@ -73,10 +84,12 @@
         rawFile.send(null);
       },
       getJSON(url, callback) {
+        // console.log('getJSON url', url);
         this.readTextFile(url, function(text){
-          console.log('json parse');
+          // // console.log('json parse');
           callback(JSON.parse(text));
-        })
+        });
+        // // console.log('this.currGameLevel', this.currGameLevel);
       },
       resetChoiceAnimation() {
         this.showCorrectChoice = false;
@@ -91,25 +104,49 @@
         };
       },
       nextQuestion: _.debounce(function() {
+        // console.log('nextQuestion');
         this.resetChoiceAnimation();
+        // console.log('this.questionIdx ', this.questionIdx);
         if (this.questionIdx < this.questions.length - 1) {
           this.questionIdx += 1;
           this.questionString = this.questions[this.questionIdx].question;
           this.choices = this.questions[this.questionIdx].choices;
-          this.audio = this.musicDirectory + this.musicList[this.currGameLevel-1] + "/" + this.questions[this.questionIdx].audioWord;
-          console.log('audio source in gamelevel1', this.audio);
+
+          // // console.log('this.currGameLevel ', this.currGameLevel);
+          this.audio = this.audioPath + this.questions[this.questionIdx].audioWord;
+          // console.log('audio source in gamelevel1', this.audio);
           this.showAllWrongChoices = false;
           this.hasChecked = false;
           this.getCorrectAnswer(this.choices);
         } else {
           // set this to API
           this.$emit('levelAdvanced');
-          console.log('go to summary');
-          // this.goToSummary();
+          this.currGameLevel += 1;
+
+          // // console.log('next ');
+          // // console.log('this.musicList.length ', this.musicList.length);
+          // // console.log('this.currGameLevel ', this.currGameLevel);
+
+          // if (currLevel < this.musicList.length) {
+          //   // console.log('in new level');
+          //   this.newSublevel();
+          // } else {
+            // console.log('go to summary');
+            this.goToSummary();
+            // this.nextDifficulty();
+          // }
         }
       }, 0),
       goToSummary: function() {
         this.$router.push('/history');
+      },
+      nextDifficulty: function() {
+        // console.log('go to nextDifficulty');
+        var nextLevel = this.currGameLevel+1;
+        // console.log('router ', this.$router);
+        // console.log('route.params ', this.$route.params);
+        this.$router.push({ name: 'game', params: { level: nextLevel }});
+        // location.reload();
       },
       selectChoice: function(choice, isCorrect) {
         if (!this.hasChecked) {
@@ -132,12 +169,18 @@
         }
       },
       pageLoad(json) {
-        console.log('json ', json);
+        // console.log('this.currGameLevel beginning of pageLoad', this.currGameLevel);
+        // console.log('pageLoad ', json);
         this.questions = json;
-        console.log('this.questions ', this.questions);
+        // console.log('this.questions ', this.questions);
+
+        // console.log('this.currGameLevel', this.currGameLevel);
         this.nextQuestion();
       },
       newSublevel: function() {
+        console.log('currGameLevel newSublevel', this.currGameLevel);
+        console.log('jsonLevelTest ', this.jsonLevelTest);
+        this.questionIdx = -1;
         var level = 0;
         if (!this.isTest) {
           level = this.jsonLevel;
@@ -148,7 +191,8 @@
       }
     },
     created() {
-      console.log('created');
+      // console.log('created');
+      console.log('created currGameLevel', this.currGameLevel);
       this.newSublevel();
     }
   }

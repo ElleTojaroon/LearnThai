@@ -36,7 +36,7 @@ const routes = [
   {path: '*/history', component: ltHistory},
   {path: '*/about', component: About},
   {path: '*/game/currLevel', component: Game},
-  {path: '*/game/:level', component: Game},
+  {path: '/game/:level', name: 'game', component: Game, props: true},
   // {path: '/audio', component: VoiceVisualizer},
   // {path: '/audio-player', component: AudioPlayer},
   {path: '*/audio-player2', component: AudioPlayerOriginal},
