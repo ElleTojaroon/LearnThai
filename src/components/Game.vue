@@ -34,7 +34,7 @@
 
         this.currLevel = 'lt-game-level' + this.difficulty;
         this.levelToPlay = this.dmndLevel;
-        console.log('this.levelToPlay', this.levelToPlay);
+        // console.log('this.levelToPlay', this.levelToPlay);
       }
     }
   }

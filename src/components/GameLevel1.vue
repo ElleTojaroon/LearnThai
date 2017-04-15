@@ -187,7 +187,7 @@
         } else {
           level = this.jsonLevelTest;
         }
-        this.getJSON(this.jsonDirectory + this.jsonLevelTest + '.json', this.pageLoad)
+        this.getJSON(this.jsonDirectory + this.jsonLevel + '.json', this.pageLoad)
       }
     },
     created() {

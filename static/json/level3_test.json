@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": [
+      {
+        "picture": "color.jpg",
+        "isCorrect": true
+      }
+    ],
+    "audioWord": "color.mp3"
+  },
+  {
+    "question": "Select the picture that corresponds to the spoken word",
+    "choices": [
+      {
+        "picture": "red.jpg",
+        "isCorrect": true
+      }
+    ],
+    "audioWord": "red.mp3"
+  }
+]
